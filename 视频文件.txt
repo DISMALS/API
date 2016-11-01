@@ -1,0 +1,1 @@
+<embed type="application/x-shockwave-flash" wmode="transparent" src="/flash/player.swf" width="208" height="187" style="undefined" id="player2" name="player" bgcolor="#ffffff" quality="high" allowfullscreen="true" allowscriptaccess="always" flashvars="file=/flash/index.flv&autostart=false&image=/flash/flash.jpg"> 

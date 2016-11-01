@@ -1,0 +1,18 @@
+1、首先确定控制面板>程序>打开或关闭Windows功能>Internet信息服务下的CGI是否勾选；
+
+2、下载PHP并且安装PHP
+
+3、安装完成PHP后，用文本编辑器打开php.ini-recommended，并将此文件名改为php.ini,同时修改其的内容：
+	修改内容如下：
+		1、Ctrl+F搜索extension_dir="./"将其改为extension_dir = "你的php安装目录\ext"
+		2、Ctrl+F搜索cgi.force_redirect = 1将其改为cgi.force_redirect = 0
+		3、Ctrl+F搜索cgi.fix_pathinfo删除前面“;”
+		4、Ctrl+F搜索fastcgi.impersonate删除前面“;”
+
+4、打开IIS信息管理器，点击“处理程序映射”，然后点“添加模块映射”：
+	请求路径：*.php
+	模块：FastCgiModule
+	可执行的文件：php安装目录下的php-cgi.exe应用程序
+	名称：自行填写
+
+5完成，测试

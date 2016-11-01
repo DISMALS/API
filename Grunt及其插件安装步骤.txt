@@ -1,0 +1,77 @@
+安装并正确使用Grunt以及其插件：网址（http://www.gruntjs.net）
+
+注：由于Grunt是依赖于node.js的npm，所以要正常使用Grunt及其插件就必须先安装node.js,配上Grunt及其插件的安装教程http://developer.51cto.com/art/201506/479127.htm
+
+第一步：安装node.js   
+
+
+第二步：安装Grunt命令行到全局环境，即npm install -g grunt-cli,安装之后运行grunt命令查看是否安装成功
+
+
+第三步：grunt-cli安装成功后，
+	1、创建前端项目并在项目的根目录上创建package.json和Gruntfile.js或者Gruntfile.coffee文件
+
+	注意：将安装Grunt最新版本到项目目录中，并将其添加到devDependencies内 npm install grunt --save-dev
+
+	2、package.json文件记录的是项目的基本信息以及开发环境（devDependencies对象内添加开发环境版本，初始为一个空对象），和生产环境（dependencies对象内添加生产环境版本信息）
+
+	3、Gruntfile.js或者Gruntfile.coffee文件，的内容是在module.exports = function(grunt){}内的Grunt任务(写在grunt.initConfig:{}中的)、加载的插件（通过grunt.loadNpmTasks()方法加载插件）、需要执行的任务（grunt.registerTask(taskName,taskList),注意taskList是一个数组），此文件还需获取package.json中的内容（通过pkg:grunt.file.readJSON('package.json')来加载package.json中的内容）
+
+第四部：上述两个文件创建成功后，在项目的跟目录上运行grunt命令行（如果返回的是Done, without errors这句话则表示成功）
+
+
+第五步：安装grunt到项目局部环境在项目根目录上安装插件，因为Grunt只是一个构建工具，且没有具体的作用，但是它可以把有具体作用的插件组合起来形成一个整体效应，插件安装使用的命令是（npm install grunt-contrib-uglify --save-dev,此处以grunt-contrib-uglify插件为例演示的，--save-dev的意思是，在当前目录安装grunt的同时，顺便把grunt保存为这个目录的开发依赖项）
+
+
+第六步：插件安装完成后，
+	1、加载所需插件（通过grunt.loadNpmTasks()方法加载插件）
+
+	2、需要在Gruntfile.js中创建任务（通过grunt.registerTask(taskName,taskList)创建任务,注意taskList是一个数组），（注：grunt.registerTask('default',[])是默认的全局任务）
+	
+
+
+第七步：在控制台输入grunt taskName 即可执行
+
+
+
+
+
+实时监控文件变化、调用相应的任务重新执行插件：grunt-contrib-watch
+
+js文件检测插件：grunt-contrib-jshint
+
+js文件合并插件：grunt-contrib-concat
+
+js文件压缩插件：grunt-contrib-uglify
+
+清空文件、文件夹：grunt-contrib-clean
+
+运行文件插件：grunt-contrib-qunit
+
+css文件压缩插件：grunt-contrib-cssmin
+
+css语法检查插件：grunt-contrib-csslint
+
+
+expand：如果设为true，就表示下面文件名的占位符（即*号）都要扩展成具体的文件名。
+cwd：需要处理的文件（input）所在的目录。
+src：表示需要处理的文件。如果采用数组形式，数组的每一项就是一个文件名，可以使用通配符。相对与cwd
+dest：表示处理后的文件名或所在目录。
+ext：表示处理后的文件后缀名。
+flatten : 删除所有生成的dest的路径部分
+rename : 一个函数，接受匹配到的文件名，和匹配的目标位置，返回一个新的目标路径
+
+
+
+options选项：
+        separator 文件连接分隔符，表示连接的文件用指定的separator分割。
+
+        banner 出现在合并后的文件开头出现，一般做说明和注释用。
+
+        footer 出现在合并后的文件底部出现，一般做说明和注释用。
+
+        stripBanners 如果为true，去除代码中的块注释，默认为false
+
+        process  如果为true，则在合并前先执行。
+
+

@@ -1,0 +1,140 @@
+/********************
+ * 取窗口滚动条高度 
+ ******************/
+function getScrollTop()
+{
+    var scrollTop=0;
+    if(document.documentElement.scrollTop)
+    {
+        scrollTop=document.documentElement.scrollTop;
+    }
+    else if(document.body)
+    {
+        scrollTop=document.body.scrollTop;
+    }
+    return scrollTop;
+}
+
+
+/********************
+ * 取窗口可视范围的高度 
+ *******************/
+function getClientHeight()
+{
+    var clientHeight=0;
+    if(document.body.clientHeight&&document.documentElement.clientHeight)
+    {
+        var clientHeight = (document.body.clientHeight<document.documentElement.clientHeight)?document.body.clientHeight:document.documentElement.clientHeight;        
+    }
+    else
+    {
+        var clientHeight = (document.body.clientHeight>document.documentElement.clientHeight)?document.body.clientHeight:document.documentElement.clientHeight;    
+    }
+    return clientHeight;
+}
+
+/********************
+ * 取文档内容实际高度 
+ *******************/
+function getScrollHeight()
+{
+    return Math.max(document.body.scrollHeight,document.documentElement.scrollHeight);
+}
+
+
+//动态获取滚动条距离顶部的距离
+//jq
+    $(window).scroll(function () {
+        var $window = $(window).scrollTop();
+        console.log($window);
+        if ($window <= 5) {
+            $(".head").css("background", "none");
+        } else if ($window > 5) {
+            $(".head").css("background", "#101125");
+        } else if ($window >= 540) {
+
+        }
+    });
+//原生 
+window.onscroll = function() { 
+console.info(window.scrollY); 
+} 
+
+
+////////////////////////////////////////////////////
+
+ 
+
+在IE中：
+document.body.clientWidth ==> BODY对象宽度
+document.body.clientHeight ==> BODY对象高度
+document.documentElement.clientWidth ==> 可见区域宽度
+document.documentElement.clientHeight ==> 可见区域高度
+在FireFox中：
+document.body.clientWidth ==> BODY对象宽度
+document.body.clientHeight ==> BODY对象高度
+document.documentElement.clientWidth ==> 可见区域宽度
+document.documentElement.clientHeight ==> 可见区域高度
+?
+在Opera中： 
+document.body.clientWidth ==> 可见区域宽度
+document.body.clientHeight ==> 可见区域高度
+document.documentElement.clientWidth ==> 页面对象宽度（即BODY对象宽度加上Margin宽）
+document.documentElement.clientHeight ==> 页面对象高度（即BODY对象高度加上Margin高）
+而如果没有定义W3C的标准，则
+IE为：
+document.documentElement.clientWidth ==> 0
+document.documentElement.clientHeight ==> 0
+FireFox为：
+document.documentElement.clientWidth ==> 页面对象宽度（即BODY对象宽度加上Margin宽）document.documentElement.clientHeight ==> 页面对象高度（即BODY对象高度加上Margin高）
+Opera为：
+document.documentElement.clientWidth ==> 页面对象宽度（即BODY对象宽度加上Margin宽）document.documentElement.clientHeight ==> 页面对象高度（即BODY对象高度加上Margin高）
+真是一件麻烦事情，其实就开发来看，宁可少一些对象和方法，不使用最新的标准要方便许多啊。
+
+ 
+
+//////////////////////////////////////////////////////////////////////////////////////
+
+ 
+
+网页可见区域宽:
+document.body.clientWidth
+
+网页可见区域高:
+document.body.clientHeight 
+
+网页可见区域宽:
+document.body.offsetWidth(包括边线的宽) 
+
+网页可见区域高:
+document.body.offsetHeight(包括边线的宽) 
+
+网页正文全文宽:
+document.body.scrollWidth 
+
+网页正文全文高:
+document.body.scrollHeight 
+
+网页被卷去的高:
+document.body.scrollTop 
+
+网页被卷去的左:
+document.body.scrollLeft 
+
+网页正文部分上:
+window.screenTop 
+
+网页正文部分左:
+window.screenLeft 
+
+屏幕分辨率的高:
+window.screen.height 
+
+屏幕分辨率的宽:
+window.screen.width 
+
+屏幕可用工作区高度:
+window.screen.availHeight 
+
+屏幕可用工作区宽度:
+window.screen.availWidth 
